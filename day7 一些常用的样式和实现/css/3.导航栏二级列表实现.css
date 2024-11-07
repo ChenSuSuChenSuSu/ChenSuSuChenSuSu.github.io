@@ -1,0 +1,63 @@
+ul,
+ol,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar{
+    /* 不能溢出隐藏， 因为二级列表溢出 */
+    /* overflow: hidden; */
+}
+.navbar i{
+    display: block;
+    clear: both;
+}
+
+.navbar>li {
+    width: 90px;
+    height: 40px;
+    background-color: #efefef;
+    float: left;
+    margin-right: 15px;
+
+    /* 文字左右居中 */
+    text-align: center;
+    /* 行高等于高度，文字垂直居中 */
+    line-height: 40px;
+
+    /* 相对定位 */
+    position: relative;
+}
+
+
+/* 二级列表 */
+.child {
+    width: 210px;
+    height: 240px;
+    background-color: aqua;
+    padding-left: 15px;
+    box-sizing: border-box;
+
+    position: absolute;
+    left: 0;
+    top: 40px;
+    /* left: 89px;
+    top: 0; */
+
+    /* 隐藏元素 */
+    display: none;
+}
+
+.child li {
+    text-align: left;
+}
+
+
+
+/* :hover 鼠标悬浮时的样式 */
+.navbar>li:hover .child{
+    /* 显示元素 */
+    display: block;
+}

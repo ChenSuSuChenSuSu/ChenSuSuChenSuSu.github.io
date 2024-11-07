@@ -1,0 +1,22 @@
+div{
+    width: 120px;
+    height: 120px;
+    border: 1px solid #000;
+
+    /* 1. overflow 元素溢出如何处理 */
+
+
+    /* (1). 溢出隐藏 */
+    overflow: hidden;
+
+    /* (2). 滚动显示溢出部分 (水平垂直方向都有滚动条) */
+    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: scroll;
+
+    /* (3). 由浏览器自己决定 */
+    overflow: auto;
+
+    /* (4). 默认值，不作处理 */
+    overflow: visible;
+}

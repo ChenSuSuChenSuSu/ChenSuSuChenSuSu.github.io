@@ -1,0 +1,28 @@
+.box1{
+    width: 240px;
+    height: 120px;
+    background-color: bisque;
+
+    /* 转弹性布局 (容器flex布局 调整 子元素位置) */
+    display: flex;
+    /* 主轴(justify-content)*/
+    
+    /* justify-content: flex-start;
+    justify-content: center;
+    justify-content: flex-end; */
+
+    /* 交叉轴(align-items) */
+    /* align-items: flex-start;
+    align-items: center;
+    align-items: flex-end; */
+    
+    justify-content: flex-end;
+    align-items: flex-start;
+    
+}
+
+.child{
+    width: 30px;
+    height: 30px;
+    background-color: brown;
+}

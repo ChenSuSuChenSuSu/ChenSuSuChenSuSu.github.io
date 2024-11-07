@@ -1,0 +1,54 @@
+/* 伪类选择器: 通过状态或位置, 来选择元素 */
+/* 伪元素选择器: 选择非元素(首行文字、首个文字、 before、 after、selected) */
+
+p{
+    width: 200px;
+    border: 1px solid #000;
+}
+
+
+
+/* 1. ::first-letter 伪元素选择器, 选择第一个文字 */
+.box1::first-letter{
+    color: red;
+    /* 首字下沉 */
+    font-size: 80px;
+    line-height: 80px;
+    margin: 0 10px;
+    float: left;
+}
+
+
+/* 2. ::first-line 选中第一行文字 */
+.box2::first-line{
+    color: yellowgreen;
+    font-weight: bold;
+}
+
+
+/* 3. ::selection 选中时的样式 */
+::selection{
+    background-color: pink;
+    color: black;
+}
+
+
+/* 重点: */
+/* 4. ::before  伪元素， 在...之前，效果跟span标签一样 */
+div::before{
+    /* 一定要有content属性, 内容可以为空 (content可以为空但是一定要有) */
+    /* content: "出现在前面的内容"; */
+    content: "";
+
+    /* 样式的支持和span标签的样式支持是一样的 (把::before当成span标签用, 一般只作装饰作用) */
+    width: 80px;
+    height: 80px;
+    display: block;
+    background-color: red;
+}
+
+/* 5. ::after  伪元素, 在...之后, 效果同::before */
+div::after{
+    /* 一定要有content属性, 内容可以为空 (content可以为空但是一定要有) */
+    content: ">>>";
+}

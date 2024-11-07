@@ -1,0 +1,39 @@
+.parent{
+    width: 600px;
+    height: 600px;
+    background-color: rgba(210, 180, 140, 0.88);
+
+    /* 相对定位 */
+    position: relative;
+}
+
+
+.parent .box1{
+    width: 120px;
+    height: 120px;
+    background-color: red;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    /* z-index要生效，一定要有定位(position属性) */
+    /* （1）.堆叠顺序高的，会覆盖堆叠顺序低的 */
+    /* （2）.堆叠顺序相同，后面盖住前面的元素 */
+    z-index: 1; 
+}
+
+.parent .box2{
+    width: 120px;
+    height: 120px;
+    background-color: green;
+
+    position: absolute;
+    left: 20px;
+    top: 100px;
+
+    /* 默认值是0 */
+    /* z-index: 0; */
+}
+
+

@@ -1,0 +1,64 @@
+div {
+    width: 60px;
+    height: 60px;
+}
+
+
+.box1 {
+    /* 1. 边框样式 (border-方向-style) */
+
+    /* (0) 默认值: none 去除边框 */
+    border-style: none;
+    /* (1) solid 实线边框 */
+    border-left-style: solid;
+    /* (2) dashed 虚线边框 */
+    border-right-style: dashed;
+    /* (3) dotted 点状边框 */
+    border-top-style: dotted;
+    /* (4) double 双实线边框 */
+    border-bottom-style: double;
+    /* (5) 其他边框 */
+    border-style: groove;
+    border-style: ridge;
+    border-style: inset;
+    border-style: outset;
+    /* (6) 没带方向表示简写 (顺序同内外边距) */
+    border-style: solid;
+    border-style: solid dashed;
+    border-style: solid dashed dotted;
+    border-style: solid dashed dotted double;
+
+    border-style: solid;
+    border-left-style: dashed;
+
+
+    /* 2. 边框宽度(border-方向-width) */
+    /* (1) 携带方向 单独设置一条边 */
+    border-right-width: 1px;
+    /* (2) 没带方向表示简写 (顺序同内外边距) */
+    border-width: 30px;
+    border-width: 30px 60px;
+
+
+
+    /* 3. 边框颜色(border-方向-color) */
+    /* (1) 携带方向 单独设置一条边 */
+    border-top-color: brown;
+    /* (2) 没带方向表示简写 (顺序同内外边距) */
+    border-color: aqua;
+    border-color: aqua green blue red;
+
+    /* 4. 一般只会同时定义四条边 */
+    border-width: 30px;
+    border-style: solid;
+    border-color: black;
+
+    /* 5. 最终的简写属性 */
+    /* (1) border: 宽度 样式 颜色 */
+    border: 1px solid #000;
+    /* (2) border-方向: 宽度 样式 颜色 */
+    border-left: 1px solid #000;
+
+    /* border: 1px; */
+    /* 没有写的值为默认值： border: 1px none black; 没有边框 */
+}

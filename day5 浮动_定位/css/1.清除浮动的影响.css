@@ -1,0 +1,95 @@
+/* 1. 标准文档流: 指的是元素排版布局过程中，元素会默认自动从左往右，从上往下的流式排列方式。前面内容发生了变化，后面的内容位置也会随着发生变化  
+*/
+
+
+/* 2. 浮动会脱离标准文档流 (不占页面空间了)*/
+.box1 {
+    width: 120px;
+    height: 120px;
+    background-color: red;
+    float: left;
+}
+
+.box2 {
+    width: 250px;
+    height: 250px;
+    background-color: skyblue;
+    float: right;
+}
+
+.box3 {
+    width: 100%;
+    height: 280px;
+    background-color: teal;
+}
+
+
+/* 3. 浮动元素不会覆盖文字 （文字环绕的效果） */
+/* 4. 多个元素浮动，按顺序依次浮动，不再占用一整行 */
+.box4 {
+    height: 500px;
+    background-color: blue;
+    /* 5.子元素浮动, 导致父元素高度为0  (子清父) */
+    /* (1). 溢出隐藏, 可以解决子元素浮动导致的父元素没有高度的问题 （如果有溢出的内容会被切掉） */
+    /* overflow: hidden; */
+
+    /* (2). 手动给父元素高度 (非常不灵活) */
+    /* height: 122px; */
+
+    /* (3).给父元素内部的结尾部分 添加一个块元素,并且让这个块元素清除同级元素的浮动 */
+
+}
+
+.box4 .line {
+    height: 121px;
+}
+
+.box4 div {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #000;
+
+    float: left;
+}
+
+/* 6. 子元素清除子元素浮动 （子元素的属性） */
+.five {
+    /* 清除左浮动, 另起一行左浮动 */
+    clear: left;
+    /* 清除右浮动, 另起一行右浮动 */
+    clear: right;
+    /* 清除浮动（不管左浮动还是右浮动）, 另起一行再浮动 */
+    clear: both;
+}
+
+.shiyi {
+    clear: left;
+}
+
+.shier {
+    clear: both;
+}
+
+
+
+ul,
+ol,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul {
+    background-color: orange;
+    /* (3). 给父元素内部的结尾部分 添加一个块元素,并且让这个块元素清除同级元素的浮动 */
+}
+
+li {
+    float: left;
+}
+
+i {
+    display: block;
+    clear: left;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/5.尺寸单位.css">
+
+</head>
+
+<body>
+    <!-- px, 像素 -->
+    <!-- %, 父元素尺寸的百分比 -->
+
+    <!-- 
+     vw:视图宽度(view width)百分比  
+     vh:视图高度(view height)百分比 
+    -->
+    <div class="box"></div>
+
+    <!-- em: 元素自身的一个字体大小 (1个em就等于1个字体大小) -->
+    <div class="box2">
+    </div>
+
+
+    <!-- rem:  一个根节点(root)的字体大小， 也就是一个html标签的字体大小 -->
+    <!-- (1个rem就等于1个html标签的字体大小) -->
+    <div class="box3">
+        <div class="box4">文字</div>
+    </div>
+
+
+    <!-- rem：响应式单位, 一般用作移动端适配 -->
+    <!-- 1. 确定一个视觉稿标准 (iphone6视觉稿标准) -->
+    <!-- 2. 在视觉稿标准，将1rem=100px -->
+    <!-- 3. 监听屏幕宽度，动态修改html字体大小 -->
+     
+    <script>
+        // 移动适配的实现原理:  根据屏幕宽度调整html字体大小
+        var html = document.querySelector("html");
+        html.style.fontSize = innerWidth/ 3.75 + "px";
+        
+        // 浏览器窗口大小改动
+        onresize = function () {
+            // 获取屏幕大小（设备宽度） =>  innerWidth 
+            html.style.fontSize = innerWidth/ 3.75 + "px";   // html的字体大小 =  375/3.75  = 100
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+.box{
+    width: 200px;
+    height: 100px;
+
+    /* 1. 边框是四个梯形组成的 */
+    border: 40px solid black;
+    border-color: red orange yellow green;
+}
+
+
+.box1{
+    width: 0;
+    height: 0;
+
+    /* 2. 元素没有宽高，只有边框 => 四个三角形 */
+    border: 40px solid black;
+    border-color: red orange yellow green;
+}
+
+
+.box2{
+    width: 0;
+    height: 0;
+
+    /* 2. 元素没有宽高，只有边框 => 四个三角形 */
+    border: 40px solid transparent;
+    border-top-color: brown;
+}
+
+.parent{
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+.box2:hover {
+    /* 上边透明色 */
+    border-top-color: transparent;
+    /* 底边红色 */
+    border-bottom-color: brown;
+
+    position: absolute;
+    left: 0;
+    top: -40px;
+}
+
+.box3{
+    width: 0;
+    height: 0;
+
+    /* 1. 先设置四条边 */
+    border: 40px solid transparent;
+    
+    /* 显示顶边 */
+    border-top-color: black;
+    /* 去除底边 */
+    border-bottom: none;
+}
+
+.box3:hover{
+    /* 显示底边 */
+    border-bottom: 40px solid black;
+    /* 去除顶边 */
+    border-top: none;
+}

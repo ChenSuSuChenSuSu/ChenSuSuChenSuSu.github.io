@@ -1,0 +1,99 @@
+/* 伪类选择器: 通过状态或位置, 来选择元素 */
+/* 伪元素选择器: 选择非元素(首行文字、首个文字、 before、 after、selected) */
+
+/* 1. a标签的四种状态, 要按照LVHA顺序 */
+/* (1). :link a标签未访问时样式 */
+a:link {
+    color: pink;
+}
+/* (2). :visited a标签访问后的样式 */
+a:visited {
+    color: #666;
+}
+/* (3). :hover 鼠标悬浮时样式 */
+a:hover {
+    color: aqua;
+}
+/* (4). :active 点击未松开时样式 */
+a:active {
+    color: orange;
+}
+
+
+/* 2. input的伪类选择器 */
+.ipt1 {
+    width: 150px;
+    display: block;
+    margin-top: 10px;
+}
+/* (1) :focus 获取焦点时的样式  */
+.ipt1:focus {
+    width: 300px;
+    transition: width 0.5s linear 0s;
+}
+/* (2) :checked 单选复选框被选中时的样式 */
+:checked {
+    width: 120px;
+    height: 120px;
+}
+/* (3) :disabled 元素被禁用时的样式 */
+button:disabled {
+    background-color: #900;
+}
+/* (4) :enabled 可用状态的元素的样式 (没被禁用) */
+.ipt1:enabled {
+    width: 500px;
+}
+/* (5) :empty 选中空元素，所有单标签都是空元素(因为没有子元素) */
+input:empty {
+    width: 60px;
+    height: 60px;
+}
+/* (6)  :not(css选择器) 选中不包含某个选择器的元素 */
+.ordered>:not(.list) {
+    background-color: red;
+}
+
+
+/* 3. 位置相关的伪类选择器 */
+/* (1) :first-child 选中第一个子元素 */
+ul>li:first-child {
+    color: red;
+}
+/* (2) :last-child 选中最后一个子元素 */
+ul>li:last-child {
+    color: blue;
+}
+
+/* (3) :nth-child(n || 预设值 || 算式) 通过数值,预设值,算式来选中元素*/
+/* <1> 数值：选中第6个子元素 */
+ul>li:nth-child(6) {
+    letter-spacing: 5px;
+}
+/* <2> 预设值: odd(奇数行) even(偶数行) */
+ul>li:nth-child(odd) {
+    /* background-color: skyblue; */
+}
+ul>li:nth-child(even) {
+    /* background-color: yellow; */
+}
+/* <3> 算式: 2n, 2n-1;   n从0开始 */
+ul>li:nth-child(2n-1) {
+    background-color: skyblue;
+}
+ul>li:nth-child(2n) {
+    background-color: yellow;
+}
+ul>li:nth-child(4n) {
+    background-color: orangered;
+}
+ul>li:nth-child(-n+3) {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* (4) :nth-last-child(),  类似:nth-child, 但从后往前选 */
+ul>li:nth-last-child(3){
+    font-style: italic;
+}
