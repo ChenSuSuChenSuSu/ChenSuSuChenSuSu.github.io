@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage Manager</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .count {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .clear-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Storage Manager</h1>
+    <form id="storage-form">
+        <label for="key">Key:</label>
+        <input type="text" id="key" required>
+        <label for="value">Value:</label>
+        <input type="text" id="value" required>
+        <button type="submit">Add to Storage</button>
+    </form>
+    <div class="count" id="count"></div>
+    <div class="error" id="error-message" style="display: none;"></div>
+    <button class="clear-button" id="clear-storage">Clear</button>
+    <table id="storage-table">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="storage-tbody">
+        </tbody>
+    </table>
+
+    <script>
+        /*
+        分别创建两个input元素用来指定storage的Key与Value
+
+        Key与Value都不能为空，或连续的空格
+
+        每次添加数据，右边的tabel都会更新动态显式当前所有的 key 与其对应的 value 值
+
+        页面存在一个用来展示当前storage中存储了多少条键值对的count组件
+        */
+        const form = document.getElementById('storage-form');
+        const keyInput = document.getElementById('key');
+        const valueInput = document.getElementById('value');
+        const countDisplay = document.getElementById('count');
+        const tbody = document.getElementById('storage-tbody');
+        const errorMessage = document.getElementById('error-message');
+        const clearButton = document.getElementById('clear-storage');
+
+        function updateTable() {
+            const storage = localStorage;
+            tbody.innerHTML = '';
+            var count = 0;
+            for (var i = 0; i < storage.length; i++) {
+                const key = storage.key(i);
+                const value = storage.getItem(key);
+                if (key.trim() && value.trim()) {
+                    const row = document.createElement('tr');
+                    const keyCell = document.createElement('td');
+                    const valueCell = document.createElement('td');
+                    keyCell.textContent = key;
+                    valueCell.textContent = value;
+                    row.appendChild(keyCell);
+                    row.appendChild(valueCell);
+                    tbody.appendChild(row);
+                    count++;
+                }
+            }
+            countDisplay.textContent = `Count: ${count}`;
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function hideError() {
+            errorMessage.style.display = 'none';
+        }
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const key = keyInput.value.trim();
+            const value = valueInput.value.trim();
+            if (key && value) {
+                localStorage.setItem(key, value);
+                keyInput.value = '';
+                valueInput.value = '';
+                keyInput.focus(); // 将焦点返回到第一个输入框
+                hideError();
+                updateTable();
+            } else {
+                showError('Key and Value cannot be empty or only spaces.');
+            }
+        });
+
+        clearButton.addEventListener('click', () => {
+            localStorage.clear();
+            updateTable();
+            hideError();
+        });
+
+        // 初始化表格和计数器
+        updateTable();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>音乐收藏优化版</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            margin-top: 20px;
+            margin-right: 50px;
+            margin-left: 50px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #song-list div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .cancel-collect {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        #collect-list li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>歌曲列表</h1>
+    <div id="song-list"></div>
+
+    <h2>已收藏歌曲</h2>
+    <ul id="collect-list"></ul>
+
+    <script>
+        const songs = [{
+                id: 1,
+                name: "会不会（吉他版）"
+            },
+            {
+                id: 2,
+                name: "是但求其爱"
+            },
+            {
+                id: 3,
+                name: "我很好（吉他版）"
+            },
+            {
+                id: 4,
+                name: "海底"
+            },
+            {
+                id: 5,
+                name: "执迷不悟"
+            },
+            {
+                id: 6,
+                name: "他只是经过"
+            },
+            {
+                id: 7,
+                name: "经济舱 (Live)"
+            },
+            {
+                id: 8,
+                name: "是想你的声音啊"
+            },
+            {
+                id: 9,
+                name: "苦尽甘来"
+            },
+            {
+                id: 10,
+                name: "天外来物"
+            },
+        ];
+
+        const collectList = JSON.parse(localStorage.getItem("collectList")) || [];
+        const songListDiv = document.getElementById("song-list");
+        const collectListUl = document.getElementById("collect-list");
+
+        function initSongList() {
+            songListDiv.innerHTML = "";
+            songs.forEach((song) => {
+                const songDiv = document.createElement("div");
+                const songName = document.createTextNode(song.name);
+                const collectButton = document.createElement("button");
+                collectButton.className = "collect-button";
+                collectButton.dataset.songId = song.id;
+                collectButton.textContent = isCollected(song.id) ? "取消收藏" : "收藏";
+                collectButton.classList.toggle("cancel-collect", isCollected(song.id));
+                collectButton.addEventListener("click", () => toggleCollect(song));
+                songDiv.appendChild(songName);
+                songDiv.appendChild(collectButton);
+                songListDiv.appendChild(songDiv);
+            });
+        }
+
+        function initCollectList() {
+            collectListUl.innerHTML = "";
+            collectList.forEach((id) => {
+                const li = document.createElement("li");
+                li.textContent = getSongNameById(id);
+                collectListUl.appendChild(li);
+            });
+        }
+
+        function toggleCollect(song) {
+            const index = collectList.indexOf(song.id);
+            if (index === -1) {
+                collectList.push(song.id);
+            } else {
+                collectList.splice(index, 1);
+            }
+            localStorage.setItem("collectList", JSON.stringify(collectList));
+            updateCollectButton(song.id);
+            initCollectList();
+        }
+
+        function updateCollectButton(songId) {
+            const buttons = document.querySelectorAll(`[data-song-id="${songId}"]`);
+            buttons.forEach(button => {
+                button.textContent = isCollected(songId) ? "取消收藏" : "收藏";
+                button.classList.toggle("cancel-collect", isCollected(songId));
+            });
+        }
+
+        function isCollected(songId) {
+            return collectList.includes(songId);
+        }
+
+        function getSongNameById(songId) {
+            const foundSong = songs.find(song => song.id === songId);
+            return foundSong ? foundSong.name : "未知歌曲";
+        }
+
+        initSongList();
+        initCollectList();
+    </script>
+</body>
+
+</html>
